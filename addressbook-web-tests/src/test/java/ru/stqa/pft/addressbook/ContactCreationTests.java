@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.fail;
 
-public class testContactCreation {
+public class ContactCreationTests {
   private WebDriver wd;
 
   @BeforeMethod(alwaysRun = true)
