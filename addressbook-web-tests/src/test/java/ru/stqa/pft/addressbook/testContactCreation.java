@@ -35,7 +35,7 @@ public class testContactCreation {
   @Test
   public void testContactCreationTests() {
     initCreateContact();
-    fillContactForm();
+    fillContactForm(new ContactData("TAnn2", "TAnn3", "TAnn", "TAS", "Title", "Company", "address", "555", "444", "333", "123@123.com", "Group1"));
     submitContact();
     returnContactPage();
   }
@@ -48,42 +48,42 @@ public class testContactCreation {
     wd.findElement(By.xpath("(//input[@name='submit'])[2]")).click();
   }
 
-  private void fillContactForm() {
+  private void fillContactForm(ContactData contactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys("TAnn");
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
     wd.findElement(By.name("middlename")).click();
     wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys("TAnn2");
+    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddlename());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys("TAnn3");
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
     wd.findElement(By.name("nickname")).click();
     wd.findElement(By.name("nickname")).clear();
-    wd.findElement(By.name("nickname")).sendKeys("TAS");
+    wd.findElement(By.name("nickname")).sendKeys(contactData.getNickname());
     wd.findElement(By.name("title")).click();
     wd.findElement(By.name("title")).clear();
-    wd.findElement(By.name("title")).sendKeys("Title");
+    wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
     wd.findElement(By.name("company")).click();
     wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys("Company");
+    wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys("address");
+    wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys("555");
+    wd.findElement(By.name("home")).sendKeys(contactData.getHome());
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys("444");
+    wd.findElement(By.name("mobile")).sendKeys(contactData.getMobile());
     wd.findElement(By.name("work")).click();
     wd.findElement(By.name("work")).clear();
-    wd.findElement(By.name("work")).sendKeys("333");
+    wd.findElement(By.name("work")).sendKeys(contactData.getWorkphone());
     wd.findElement(By.name("email")).click();
     wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys("123@123.com");
+    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
     wd.findElement(By.name("new_group")).click();
-    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText("Group1");
+    new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroupname());
     wd.findElement(By.xpath("(//option[@value='1'])[3]")).click();
   }
 
@@ -92,9 +92,13 @@ public class testContactCreation {
   }
 
   @AfterMethod(alwaysRun = true)
-  public void tearDown()  {
-    wd.findElement(By.linkText("Logout")).click();
+  public void tearDown() {
+    logout();
     wd.quit();
+  }
+
+  private void logout() {
+    wd.findElement(By.linkText("Logout")).click();
   }
 
   private boolean isElementPresent(By by) {
@@ -114,5 +118,4 @@ public class testContactCreation {
       return false;
     }
   }
-
 }
