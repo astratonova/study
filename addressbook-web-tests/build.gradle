@@ -7,4 +7,5 @@ repositories {
 dependencies {
     implementation 'org.testng:testng:7.1.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-6'
+    implementation 'org.slf4j:slf4j-log4j12:2.0.0-alpha1'
 }
