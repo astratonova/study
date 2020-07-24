@@ -10,10 +10,6 @@ public class GroupHelper {
     this.wd=wd;
   }
 
-  public void returnToGroupPage() {
-    wd.findElement(By.linkText("group page")).click();
-  }
-
   public void submitGroup() {
     wd.findElement(By.name("submit")).click();
   }
@@ -40,5 +36,9 @@ public class GroupHelper {
 
   public void selectGroup() {
     wd.findElement(By.xpath("(//input[@name='selected[]'])[3]")).click();
+  }
+
+  public void returnToGroupPage() {
+    wd.findElement(By.linkText("group page")).click();
   }
 }
