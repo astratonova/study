@@ -26,6 +26,13 @@ public class BaseHelper {
     wd.findElement(locator).click();
   }
 
+  public void acceptModalWindow() {
+    wd.switchTo().alert().accept();
+  }
+  public void cancelModalWindow() {
+    wd.switchTo().alert().dismiss();
+  }
+
   public boolean isElementPresent(By by) {
     try {
       wd.findElement(by);
