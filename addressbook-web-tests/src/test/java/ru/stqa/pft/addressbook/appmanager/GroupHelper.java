@@ -25,7 +25,7 @@ public class GroupHelper extends BaseHelper {
   }
 
   public void deleteSelectedGroups() {
-    click(By.xpath("(//input[@name='delete'])[2]"));
+    click(By.name("delete"));
   }
 
   public void selectGroup() {
@@ -34,5 +34,13 @@ public class GroupHelper extends BaseHelper {
 
   public void returnToGroupPage() {
     click(By.linkText("group page"));
+  }
+
+  public void initGroupModification() {
+    click(By.name("edit"));
+  }
+
+  public void submitGroupModification() {
+    click(By.name("update"));
   }
 }
