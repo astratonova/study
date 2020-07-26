@@ -1,8 +1,8 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.omg.CORBA.ValueBaseHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 public class GroupHelper extends BaseHelper {
 
