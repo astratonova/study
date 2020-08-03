@@ -17,9 +17,14 @@ public class BaseHelper {
   }
 
   public void type(String locator, String text) {
-    click(By.name(locator));
-    wd.findElement(By.name(locator)).clear();
-    wd.findElement(By.name(locator)).sendKeys(text);
+    if(text!=null) {
+      String existingText= wd.findElement(By.name(locator)).getAttribute("value");
+      if (! existingText.equals(text)) {
+        click(By.name(locator));
+        wd.findElement(By.name(locator)).clear();
+        wd.findElement(By.name(locator)).sendKeys(text);
+      }
+    }
   }
 
   public void click(By locator) {
