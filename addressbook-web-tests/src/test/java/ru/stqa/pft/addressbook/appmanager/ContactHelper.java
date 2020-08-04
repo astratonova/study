@@ -30,7 +30,11 @@ public class ContactHelper extends BaseHelper {
     type("email", contactData.getEmail());
     if (creation) {
       click(By.name("new_group"));
+      //создается контакт с group4: здесь проверяется символ 4 в списке групп,
+      // если в создании контакта передавать другую группу, то надо изменить символ
+      if((wd.findElement(By.name("new_group")).getText().contains("4"))){
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
@@ -61,7 +65,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void editContact() {
-    click(By.xpath("(//img[@alt='Edit'])[4]"));
+    click(By.xpath("(//img[@alt='Edit'])"));
   }
 
   public void submitContactModification() {
@@ -69,7 +73,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public boolean isThereAContact() {
-    return isElementPresent(By.xpath("(//img[@alt='Edit'])[4]"));
+    return isElementPresent(By.xpath("(//img[@alt='Edit'])"));
   }
 
   public void createNewContact(ContactData contactData, boolean creation) {
