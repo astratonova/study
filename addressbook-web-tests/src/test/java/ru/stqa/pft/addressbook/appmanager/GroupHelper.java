@@ -45,7 +45,7 @@ public class GroupHelper extends BaseHelper {
   }
 
   public boolean isThereAGroup() {
-    return isElementPresent(By.xpath("(//input[@name='selected[]'])"));
+    return !isElementPresent(By.xpath("(//input[@name='selected[]'])"));
   }
 
   public void createNewGroup(GroupData group) {
