@@ -29,7 +29,7 @@ public class GroupHelper extends BaseHelper {
   }
 
   public void selectGroup() {
-    click(By.xpath("(//input[@name='selected[]'])[3]"));
+    click(By.xpath("(//input[@name='selected[]'])[6]"));
   }
 
   public void returnToGroupPage() {
@@ -42,5 +42,16 @@ public class GroupHelper extends BaseHelper {
 
   public void submitGroupModification() {
     click(By.name("update"));
+  }
+
+  public boolean isThereAGroup() {
+    return isElementPresent(By.xpath("(//input[@name='selected[]'])[6]"));
+  }
+
+  public void createNewGroup(GroupData group) {
+    initGroupCreation();
+    fillGroupForm(group);
+    submitGroup();
+    returnToGroupPage();
   }
 }

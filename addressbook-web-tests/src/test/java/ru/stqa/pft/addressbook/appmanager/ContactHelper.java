@@ -31,19 +31,10 @@ public class ContactHelper extends BaseHelper {
     if (creation) {
       click(By.name("new_group"));
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-      click(By.xpath("(//option[@value='1'])[3]"));
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
-
-  /*
-  public void fillNewGroup(String locator, String groupname) {
-    click(By.name(locator));
-    new Select(wd.findElement(By.name(locator))).selectByVisibleText(groupname);
-    click(By.xpath("(//option[@value='1'])[3]"));
-  }
-  */
 
   public void initCreateContact() {
     click(By.linkText("add new"));
@@ -75,5 +66,16 @@ public class ContactHelper extends BaseHelper {
 
   public void submitContactModification() {
     click(By.name("update"));
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("(//img[@alt='Edit'])[4]"));
+  }
+
+  public void createNewContact(ContactData contactData, boolean creation) {
+    initCreateContact();
+    fillContactForm(contactData, creation);
+    submitContact();
+    returnContactPage();
   }
 }
