@@ -73,7 +73,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public boolean isThereAContact() {
-    return !isElementPresent(By.xpath("(//img[@alt='Edit'])"));
+    return isElementPresent(By.xpath("(//img[@alt='Edit'])"));
   }
 
   public void createNewContact(ContactData contactData, boolean creation) {
