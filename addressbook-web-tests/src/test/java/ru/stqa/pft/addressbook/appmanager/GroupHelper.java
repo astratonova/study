@@ -28,8 +28,8 @@ public class GroupHelper extends BaseHelper {
     click(By.name("delete"));
   }
 
-  public void selectGroup() {
-    click(By.xpath("(//input[@name='selected[]'])"));
+  public void selectGroup(int index) {
+    wd.findElements(By.xpath("(//input[@name='selected[]'])")).get(index).click();
   }
 
   public void returnToGroupPage() {
@@ -53,5 +53,9 @@ public class GroupHelper extends BaseHelper {
     fillGroupForm(group);
     submitGroup();
     returnToGroupPage();
+  }
+
+  public int getGroupCount() {
+    return wd.findElements(By.xpath("(//input[@name='selected[]'])")).size();
   }
 }
