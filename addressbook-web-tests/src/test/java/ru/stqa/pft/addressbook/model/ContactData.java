@@ -1,6 +1,10 @@
 package ru.stqa.pft.addressbook.model;
 
+import java.util.Objects;
+
 public class ContactData {
+
+  private int id;
   private final String middlename;
   private final String lastname;
   private final String firstname;
@@ -14,8 +18,23 @@ public class ContactData {
   private final String email;
   private String group;
 
-
+  public ContactData(int id,String middlename, String lastname, String firstname, String nickname, String title, String company, String address, String home, String mobile, String workphone, String email, String group) {
+    this.id=id;
+    this.middlename = middlename;
+    this.lastname = lastname;
+    this.firstname = firstname;
+    this.nickname = nickname;
+    this.title = title;
+    this.company = company;
+    this.address = address;
+    this.home = home;
+    this.mobile = mobile;
+    this.workphone = workphone;
+    this.email = email;
+    this.group = group;
+  }
   public ContactData(String middlename, String lastname, String firstname, String nickname, String title, String company, String address, String home, String mobile, String workphone, String email, String group) {
+    this.id=Integer.MAX_VALUE;
     this.middlename = middlename;
     this.lastname = lastname;
     this.firstname = firstname;
@@ -76,5 +95,35 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "lastname='" + lastname + '\'' +
+            ", firstname='" + firstname + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    ContactData that = (ContactData) o;
+    return Objects.equals(lastname, that.lastname) &&
+            Objects.equals(firstname, that.firstname);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(lastname, firstname);
   }
 }
