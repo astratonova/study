@@ -88,7 +88,7 @@ public class ContactHelper extends BaseHelper {
     returnContactPage();
   }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts= new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element: elements) {

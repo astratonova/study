@@ -11,12 +11,13 @@ public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() {
-    app.getNavigationHelper().goToGroupPage();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
-    GroupData group = new GroupData("group3", "group3(Logo)", "group3(Comment)");
-    app.getGroupHelper().createNewGroup(group);
+    app.goTo().groupPage();
+    List<GroupData> before = app.group().list();
+    GroupData group = new GroupData()
+            .withName("group3").withFooter("group3(Logo)").withHeader("group3(Comment)");
+    app.group().create(group);
 
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(before.size() + 1, after.size());
 
     before.add(group);
@@ -28,12 +29,12 @@ public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreationEmpty() {
-    app.getNavigationHelper().goToGroupPage();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
-    GroupData group = new GroupData("groupName", null, null);
-    app.getGroupHelper().createNewGroup(group);
+    app.goTo().groupPage();
+    List<GroupData> before = app.group().list();
+    GroupData group = new GroupData().withName("group3");
+    app.group().create(group);
 
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(before.size() + 1, after.size());
 
     before.add(group);
