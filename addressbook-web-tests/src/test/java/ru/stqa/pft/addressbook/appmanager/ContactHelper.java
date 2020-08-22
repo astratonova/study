@@ -33,6 +33,7 @@ public class ContactHelper extends BaseHelper {
     type("mobile", contactData.getMobile());
     type("work", contactData.getWorkphone());
     type("email", contactData.getEmail());
+    attach("photo", contactData.getPhoto());
     if (creation) {
       click(By.name("new_group"));
       //создается контакт с group4: здесь проверяется символ 4 в списке групп,
