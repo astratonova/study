@@ -12,11 +12,15 @@ public class ContactData {
   private String title;
   private String company;
   private String address;
-  private String home;
+  private String homephone;
   private String mobile;
   private String workphone;
   private String email;
+  private String email2;
+  private String email3;
   private String group;
+  private String allphones;
+  private String allemail;
 
  /* public ContactData(int id,String middlename, String lastname, String firstname, String nickname, String title, String company, String address, String home, String mobile, String workphone, String email, String group) {
     this.id=id;
@@ -50,6 +54,22 @@ public class ContactData {
     this.group = group;
   }
   */
+ public String getAllphones() {
+   return allphones;
+ }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+  public String getAllemail() {
+    return allemail;
+  }
+
   public String getMiddlename() {
     return middlename;
   }
@@ -78,8 +98,8 @@ public class ContactData {
     return address;
   }
 
-  public String getHome() {
-    return home;
+  public String getHomephone() {
+    return homephone;
   }
 
   public String getMobile() {
@@ -104,6 +124,11 @@ public class ContactData {
 
   public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData withAllphones(String allphones) {
+    this.allphones = allphones;
     return this;
   }
 
@@ -142,8 +167,8 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withHome(String home) {
-    this.home = home;
+  public ContactData withHomephone(String home) {
+    this.homephone = home;
     return this;
   }
 
@@ -159,6 +184,21 @@ public class ContactData {
 
   public ContactData withEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withAllemail(String allemail) {
+    this.allemail = allemail;
     return this;
   }
 
@@ -190,4 +230,5 @@ public class ContactData {
   public int hashCode() {
     return Objects.hash(id, lastname, firstname);
   }
+
 }

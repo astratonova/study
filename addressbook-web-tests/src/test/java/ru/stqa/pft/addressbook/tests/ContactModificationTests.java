@@ -12,7 +12,7 @@ public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePrecondition() {
-    app.goTo().goToContactPage();
+    app.goTo().homePage();
     if (!app.contact().isThereAContact()) {
       app.contact().create(new ContactData().
               withLastname("Lastname").withMiddlename("Middlename").
