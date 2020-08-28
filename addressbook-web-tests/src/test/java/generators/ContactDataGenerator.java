@@ -6,7 +6,7 @@ import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.*;
-import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,9 +15,8 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupDataGenerator {
-
-  @Parameter(names = "-c",description = "Group count")
+public class ContactDataGenerator {
+  @Parameter(names = "-c",description = "Contacts count")
   public int count;
 
   @Parameter(names = "-f",description = "Target file")
@@ -27,7 +26,7 @@ public class GroupDataGenerator {
   public String format;
 
   public static void main(String[] args) throws IOException {
-    GroupDataGenerator generator = new GroupDataGenerator();
+    ContactDataGenerator generator = new ContactDataGenerator();
     JCommander jcommander = new JCommander(generator);
     try {
       jcommander.parse(args);
@@ -39,10 +38,8 @@ public class GroupDataGenerator {
   }
 
   private void run() throws IOException {
-    List<GroupData> groups = generateGroups(count);
-    if(format.equals("csv")){
-    saveAsCSV(groups,new File(file));
-    }else if(format.equals("xml")){
+    List<ContactData> groups = generateContacts(count);
+    if(format.equals("xml")){
       saveAsXML(groups,new File(file));
     }else if(format.equals("json")){
       saveAsJSON(groups,new File(file));
@@ -51,7 +48,7 @@ public class GroupDataGenerator {
     }
   }
 
-  private void saveAsJSON(List<GroupData> groups, File file) throws IOException {
+  private void saveAsJSON(List<ContactData> groups, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting()
             .excludeFieldsWithoutExposeAnnotation().create();
     String json =gson.toJson(groups);
@@ -60,28 +57,22 @@ public class GroupDataGenerator {
     }
   }
 
-  private void saveAsXML(List<GroupData> groups, File file) throws IOException {
+  private void saveAsXML(List<ContactData> groups, File file) throws IOException {
     XStream xstream = new XStream();
-    xstream.processAnnotations(GroupData.class);
+    xstream.processAnnotations(ContactData.class);
     String xml = xstream.toXML(groups);
     try(Writer writer = new FileWriter(file)){
-    writer.write(xml);
+      writer.write(xml);
     }
   }
 
-  private void saveAsCSV(List<GroupData> groups, File file) throws IOException {
-    Writer writer = new FileWriter(file);
-    for (GroupData group : groups) {
-      writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
-    }
-    writer.close();
-  }
-
-  private List<GroupData> generateGroups(int count) {
-    List<GroupData> groups = new ArrayList<GroupData>();
+  private List<ContactData> generateContacts(int count) {
+    List<ContactData> groups = new ArrayList<ContactData>();
     for (int i=0; i<count; i++){
-      groups.add(new GroupData().withName(String.format("group%s",i))
-              .withHeader(String.format("H %s",i)).withFooter(String.format("F %s",i)));
+      groups.add(new ContactData().withFirstname(String.format("Firstname%s",i))
+              .withMiddlename(String.format("Middlename%s",i))
+              .withLastname(String.format("Lastname%s",i)).withGroup(String.format("group4")));
+
     }
     return groups;
   }

@@ -129,7 +129,7 @@ public class ContactHelper extends BaseHelper {
     Contacts contacts = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      List<WebElement> cells = wd.findElements(By.tagName("td"));
+      List<WebElement> cells = element.findElements(By.tagName("td"));
       String lastName = cells.get(1).getText();
       String firstName = cells.get(2).getText();
       String phones = cells.get(5).getText();
@@ -140,7 +140,6 @@ public class ContactHelper extends BaseHelper {
               withFirstname(firstName).withAllphones(phones).withAddress(address).withAllemail(emails);
 
       contacts.add(contact);
-
     }
     return contacts;
   }
