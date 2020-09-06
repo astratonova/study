@@ -18,8 +18,8 @@ public class ContactPhoneTests extends TestBase {
     if (!app.contact().isThereAContact()) {
       app.contact().create(new ContactData().
               withLastname("Lastname").withMiddlename("Middlename").
-              withFirstname("Ann").withGroup("group4")
-              .withMobile("123-123").withWorkphone("+7(8)9"), true);
+              withFirstname("Ann").withMobile("123-123").
+              withWorkphone("+7(8)9"), true);
     }
   }
 

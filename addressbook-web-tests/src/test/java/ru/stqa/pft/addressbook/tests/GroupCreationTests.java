@@ -4,8 +4,6 @@ import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
@@ -77,6 +75,8 @@ public class GroupCreationTests extends TestBase {
     assertThat(before.size() + 1,equalTo(after.size()));
     assertThat(before.withAdded(group.withId(after.stream().mapToInt(g->g.getId()).max().getAsInt())),
             equalTo(after));
+
+    verifyGroupListInUI();
   }
 
   @Test
@@ -90,5 +90,7 @@ public class GroupCreationTests extends TestBase {
     assertThat(before.size() + 1,equalTo(after.size()));
     assertThat(before.withAdded(group.withId(after.stream().mapToInt(g->g.getId()).max().getAsInt())),
             equalTo(after));
+
+    verifyGroupListInUI();
   }
 }

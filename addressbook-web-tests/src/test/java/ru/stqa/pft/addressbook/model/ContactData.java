@@ -5,7 +5,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name ="addressbook")
@@ -23,9 +25,9 @@ public class ContactData {
   @Expose
   @Column
   private String lastname;
-  @Expose
-  @Transient
-  private String group;
+ // @Expose
+ // @Transient
+ // private String group;
   @Transient
   private String nickname;
   @Transient
@@ -56,39 +58,10 @@ public class ContactData {
   @Column(name= "photo")
   @Type(type="text")
   private String photo;
-
- /* public ContactData(int id,String middlename, String lastname, String firstname, String nickname, String title, String company, String address, String home, String mobile, String workphone, String email, String group) {
-    this.id=id;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.firstname = firstname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.workphone = workphone;
-    this.email = email;
-    this.group = group;
-  }
-
-   public ContactData(String middlename, String lastname, String firstname, String nickname, String title, String company, String address, String home, String mobile, String workphone, String email, String group) {
-    this.id=Integer.MAX_VALUE;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.firstname = firstname;
-    this.nickname = nickname;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.home = home;
-    this.mobile = mobile;
-    this.workphone = workphone;
-    this.email = email;
-    this.group = group;
-  }
-  */
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name= "address_in_groups",joinColumns = @JoinColumn(name="id"),
+          inverseJoinColumns = @JoinColumn(name ="group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
 
   @Override
   public String toString() {
@@ -190,8 +163,11 @@ public class ContactData {
     return email;
   }
 
-  public String getGroup() {
+ /* public String getGroup() {
     return group;
+  }*/
+  public Groups getGroups() {
+    return new Groups(groups);
   }
 
   public int getId() {
@@ -283,9 +259,14 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withGroup(String group) {
+  public ContactData inGroup(GroupData group) {
+     groups.add(group);
+     return this;
+  }
+
+ /* public ContactData withGroup(String group) {
     this.group = group;
     return this;
-  }
+  }*/
 
 }

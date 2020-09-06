@@ -38,8 +38,10 @@ public class ContactHelper extends BaseHelper {
       click(By.name("new_group"));
       //создается контакт с group4: здесь проверяется символ 4 в списке групп,
       // если в создании контакта передавать другую группу, то надо изменить символ
-      if ((wd.findElement(By.name("new_group")).getText().contains("4"))) {
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (contactData.getGroups().size()>0) {
+        Assert.assertTrue(contactData.getGroups().size()==1);
+        new Select(wd.findElement(By.name("new_group"))).
+                selectByVisibleText(contactData.getGroups().iterator().next().getName());
       }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
